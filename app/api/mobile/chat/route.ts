@@ -1,6 +1,10 @@
+// app/api/mobile/chat/route.ts
 import { NextRequest, NextResponse } from "next/server";
+import { Buffer } from "buffer";
 import { createClient } from "@/utils/supabase/server";
-import { getPersonalityById } from "@/db/personalities"; // ajusta el import si se llama distinto
+import { getPersonalityById } from "@/db/personalities";
+
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,7 +16,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
+    const body = await req.json().catch(() => null);
+
+    if (!body || typeof body !== "object") {
+      return NextResponse.json(
+        { error: "Invalid JSON body" },
+        { status: 400 },
+      );
+    }
+
     const { personality_id, message, voice } = body as {
       personality_id?: string;
       message?: string;
@@ -26,8 +38,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 1) Obtener personalidad desde Supabase
     const supabase = createClient();
     const personality = await getPersonalityById(supabase, personality_id);
+
     if (!personality) {
       return NextResponse.json(
         { error: "Personality not found" },
@@ -35,11 +49,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Prompt base alineado con Aria
     const systemPrompt =
-      personality.character_prompt ||
-      `You are ${personality.title}. Respond in a friendly way.`;
+      personality.character_prompt &&
+      personality.character_prompt.trim().length > 0
+        ? personality.character_prompt
+        : `Eres ${personality.title}, un asistente del proyecto Aria. 
+Responde siempre en español neutro, con tono cálido, claro y respetuoso. 
+Habla con frases cortas y fáciles de entender.`;
 
-    // 1) Chat de texto (igual que antes)
+    // 2) Llamada de chat (texto) a OpenAI
     const completionRes = await fetch(
       "https://api.openai.com/v1/chat/completions",
       {
@@ -60,18 +79,18 @@ export async function POST(req: NextRequest) {
 
     if (!completionRes.ok) {
       const text = await completionRes.text();
-      console.error("OpenAI error:", text);
+      console.error("OpenAI chat error:", text);
       return NextResponse.json(
-        { error: "OpenAI API error", details: text },
+        { error: "OpenAI chat API error", details: text },
         { status: 500 },
       );
     }
 
-    const completionJson = await completionRes.json();
+    const completionJson = (await completionRes.json()) as any;
     const reply: string =
       completionJson.choices?.[0]?.message?.content ?? "No response";
 
-    // 2) Si el cliente pide voz, generamos audio con audio/speech
+    // 3) Si se pide voz, generamos audio TTS
     let audioBase64: string | null = null;
     let audioFormat: string | null = null;
 
@@ -83,8 +102,8 @@ export async function POST(req: NextRequest) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "gpt-4o-mini-tts", // modelo TTS recomendado:contentReference[oaicite:1]{index=1}
-          voice: personality.oai_voice || "alloy", // usa el voice de la personalidad o default
+          model: "gpt-4o-mini-tts",
+          voice: personality.oai_voice || "alloy",
           input: reply,
           response_format: "mp3",
         }),
@@ -92,8 +111,8 @@ export async function POST(req: NextRequest) {
 
       if (!ttsRes.ok) {
         const text = await ttsRes.text();
-        console.error("TTS error:", text);
-        // no rompemos todo, solo devolvemos texto
+        console.error("OpenAI TTS error:", text);
+        // No rompemos toda la respuesta: devolvemos texto y audio=null
       } else {
         const arrayBuffer = await ttsRes.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
@@ -109,7 +128,7 @@ export async function POST(req: NextRequest) {
       audio_format: audioFormat,
     });
   } catch (error) {
-    console.error("Error in /api/mobile/chat", error);
+    console.error("Error in /api/mobile/chat:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },
