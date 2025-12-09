@@ -1,4 +1,8 @@
 // app/api/mobile/personalities/route.ts
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 import { getAllPersonalities } from "@/db/personalities";
