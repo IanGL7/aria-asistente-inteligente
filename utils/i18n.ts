@@ -22,7 +22,7 @@ export type EnglishCopy =
 const tx = (languageCode: "en-US" | "de-DE" | "es-ES" | "es-AR" | "zh-CN") => {
     return (key: EnglishCopy) => {
         if (!languageCode) {
-            languageCode = "en-US";
+            languageCode = "es-ES";
         }
         if (!key) {
             key = "Playground";
