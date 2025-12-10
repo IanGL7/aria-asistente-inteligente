@@ -113,6 +113,10 @@ export const metadata: Metadata = {
     applicationName: "Aria - Asistente inteligente",
     description:
         "Aria es un asistente inteligente para cuidado y seguridad que funciona incluso sin internet. Permite realizar llamadas y alertas, controlar dispositivos del hogar y apoyar a personas que viven solas, adultos mayores o personas con discapacidad.",
+
+     manifest: "/manifest.webmanifest",
+    themeColor: "#020617",
+    
     authors: [
         {
             name: "Ian Gonzalez Luna",
@@ -165,9 +169,16 @@ export const metadata: Metadata = {
         },
     },
     icons: {
-        icon: "/favicon.ico",
-        apple: "/favicon.ico",
-    },
+  icon: [
+    { url: "/favicon.ico", type: "image/x-icon" },
+    { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+    { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
+  ],
+  apple: [
+    { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+  ],
+},
+
     twitter: {
         card: "summary_large_image",
         title:
