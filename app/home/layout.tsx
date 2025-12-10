@@ -14,7 +14,7 @@ export const revalidate = 60;
 export const fetchCache = "force-no-store";
 
 export const metadata: Metadata = {
-  title: "Aria · Panel de voz",
+  title: "Panel de voz",
   ...getOpenGraphMetadata("Panel Aria"),
 };
 

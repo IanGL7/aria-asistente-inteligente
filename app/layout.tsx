@@ -17,11 +17,15 @@ import { createClient } from "@/utils/supabase/server";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
 import Footer from "./components/Footer";
+import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 import { fetchGithubStars } from "./actions";
 import { Metadata, Viewport } from "next";
 import NextTopLoader from "nextjs-toploader";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Karla } from "next/font/google";
+
+
+
 
 const karla = Karla({
 	subsets: ["latin"],
@@ -369,6 +373,7 @@ export default async function RootLayout({
                 {/* <Analytics /> */}
                 <Toaster />
                 {/* </ThemeProvider> */}
+                 <ServiceWorkerRegister />
             </body>
             <GoogleAnalytics gaId="G-XXXXXXXXXX" />{" "}
             {/* TODO: Reemplazar por el ID real de Google Analytics o eliminar si no se usa */}
