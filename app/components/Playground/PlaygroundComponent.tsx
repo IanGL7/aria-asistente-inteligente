@@ -52,7 +52,6 @@ const Playground: React.FC<PlaygroundProps> = ({
                 <div className="flex flex-row items-center gap-4 sm:gap-8 justify-between">
                     <div className="flex flex-row items-center gap-4 sm:gap-8">
                         <h1 className="text-3xl font-semibold tracking-tight">
-                            <span className="text-[#6C63FF]">Aria</span>{" "}
                             <span className="text-slate-900">· Panel de voz</span>
                         </h1>
 
