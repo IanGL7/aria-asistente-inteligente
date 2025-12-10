@@ -67,11 +67,11 @@ export default async function LandingPage() {
         más tranquilidad en casa
       </h1>
 
-     <p className="mt-6 text-base md:text-2xl text-gray-700 max-w-5xl">
+     <p className="mt-6 text-base md:text-2xl text-gray-700 max-w-5xl font-semibold">
   Aria es un asistente inteligente para cuidado y seguridad que funciona
   incluso sin conexión a internet.
     </p>
-    <p className="mt-6 text-base md:text-2xl text-gray-700 max-w-5xl">
+    <p className="mt-6 text-base md:text-2xl text-gray-700 max-w-5xl font-semibold">
       Realiza llamadas y alertas de
   emergencia, y controla dispositivos del hogar de forma local para
   apoyar a personas que viven solas, adultos mayores o personas con
@@ -134,7 +134,7 @@ export default async function LandingPage() {
   
 </section>
 
-<section className="w-full pb-16 md:pt-2 pt-16  bg-[#FCFAFF]">
+<section className="w-full pb-16 md:pt-2 pt-8  bg-[#FCFAFF]">
   <div className="max-w-screen-lg mx-auto px-4">
     <h3 className="text-center text-sm md:text-base font-medium text-gray-500 mb-4 md:mb-6">
       Impulsado por
