@@ -4,6 +4,11 @@ import { useEffect } from "react";
 
 export function ServiceWorkerRegister() {
   useEffect(() => {
+    // ⛔ Nada de SW en desarrollo
+    if (process.env.NODE_ENV !== "production") {
+      return;
+    }
+
     if (typeof window === "undefined") return;
     if (!("serviceWorker" in navigator)) return;
 

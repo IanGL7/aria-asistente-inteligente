@@ -1,18 +1,16 @@
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = "aria-pwa-v1";
+const CACHE_NAME = "aria-pwa-v2"; // 👈 cambiamos versión
 const OFFLINE_URL = "/offline";
 
 const URLS_TO_CACHE = [
-  "/",
-  "/offline",
-  "/login",
-  "/home",
+  OFFLINE_URL,
   "/favicon.ico",
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
   "/img/og-aria.png",
 ];
+
 
 // Instalar: precache de las rutas básicas
 self.addEventListener("install", (event) => {
