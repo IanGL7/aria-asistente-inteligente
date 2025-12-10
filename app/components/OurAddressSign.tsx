@@ -6,10 +6,10 @@ const OurAddressSign = () => {
                 href="mailto:iangonzalezluna7@gmail.com"
                 className="text-blue-400 underline"
             >
-                akadeb97@gmail.com
+                iangonzalezluna7@gmail.com
             </a>
             ] <br />
-            Founder, Elato AI
+            Founder, Aria AI
             <br />
             <br />
             <span className="underline">US</span>
