@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = "aria-pwa-v2"; // 👈 cambiamos versión
+const CACHE_NAME = "aria-pwa-v4"; // 👈 cambiamos versión
 const OFFLINE_URL = "/offline";
 
 const URLS_TO_CACHE = [

@@ -119,7 +119,7 @@ export const metadata: Metadata = {
         "Aria es un asistente inteligente para cuidado y seguridad que funciona incluso sin internet. Permite realizar llamadas y alertas, controlar dispositivos del hogar y apoyar a personas que viven solas, adultos mayores o personas con discapacidad.",
 
      manifest: "/manifest.webmanifest",
-    themeColor: "#020617",
+    
     
     authors: [
         {
@@ -209,6 +209,7 @@ export const viewport: Viewport = {
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
+    themeColor: "#020617",
 };
 
 const jsonLd: WithContext<Product> = {

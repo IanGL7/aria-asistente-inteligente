@@ -22,21 +22,34 @@ export default async function LandingPage() {
     <div className="flex min-h-screen flex-col bg-[#FCFAFF]">
       <main className="flex-1">
         {/* Hero Section */}
-<section className="relative w-full py-16 md:py-44 overflow-hidden bg-[#FCFAFF]">
-  {/* Imagen de fondo a tamaño completo */}
+<section
+  className="
+    relative w-full 
+    h-[420px] md:h-auto       // altura fija en móvil, auto en desktop
+    py-16 md:py-44 
+    overflow-hidden 
+    bg-[#FCFAFF]
+  "
+>
+  {/* Imagen de fondo */}
   <Image
-    src="/logos/aria1.png" // asegúrate de que exista en /public
-    alt="Aria fondo"
-    fill
-    priority
-    className="
-      pointer-events-none select-none opacity-60
-      object-contain 
-      object-right-center
-    "
-  />
+  src="/logos/aria1.png"
+  alt="Aria fondo"
+  fill
+  priority
+  className="
+    pointer-events-none select-none opacity-60
+    object-cover                   // recorta en móvil
+    object-[15%_40%]               // 📍 móvil: 70% horizontal, 40% vertical
+    md:object-contain              // desktop: quepa completa
+    md:object-right                // alineada a la derecha en desktop
+              /* 🖥️ md+: tamaño normal */
+   
+  "
+/>
 
-  {/* Manchas de color suaves tipo glow */}
+
+  {/* Manchas de color suaves */}
   <div
     className="pointer-events-none absolute -top-40 -left-40 h-80 w-80 rounded-full bg-[#7B29DD33] blur-3xl"
     aria-hidden="true"
@@ -47,8 +60,7 @@ export default async function LandingPage() {
   />
 
   <div className="container pl-6 pr-4 md:pl-24 md:pr-6 max-w-full relative">
-    {/* Solo la columna de texto, encima del fondo */}
-    <div className=" relative z-10 max-w-full md:ml-8 lg:ml-16">
+    <div className="relative z-10 max-w-full md:ml-8 lg:ml-16">
       <h1 className="text-4xl md:text-7xl font-bold leading-tight text-[#32175A]">
         Más seguridad,
         <br />
@@ -122,7 +134,7 @@ export default async function LandingPage() {
   
 </section>
 
-<section className="w-full pb-16   bg-[#FCFAFF]">
+<section className="w-full pb-16 md:pt-2 pt-16  bg-[#FCFAFF]">
   <div className="max-w-screen-lg mx-auto px-4">
     <h3 className="text-center text-sm md:text-base font-medium text-gray-500 mb-4 md:mb-6">
       Impulsado por
