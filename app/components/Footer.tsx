@@ -38,7 +38,7 @@ export default function Footer() {
                     </Button>
                 </a>
                 <Label className={`font-normal text-xs text-gray-500`}>
-                   Echo con el 💜 de AriaAI © {new Date().getFullYear()}
+                   Hecho con el 💜 de AriaAI © {new Date().getFullYear()}
                 </Label>
             </div>
             {/* <Separator orientation="vertical" /> */}
