@@ -98,7 +98,7 @@ export default async function LandingPage() {
     Si te gusta mi proyecto, puedes descargar la aplicación móvil para Android.
   </p>
   <a
-    href="https://play.google.com/store/apps/details?id=TU.PAQUETE.ARIA" 
+    href="https://fromsmash.com/Aria-Asistente-inteligente" 
     // TODO: Reemplaza por la URL real de tu app en Google Play
     target="_blank"
     rel="noopener noreferrer"
@@ -241,7 +241,7 @@ export default async function LandingPage() {
                 <h3 className="text-xl font-bold text-[#32175A] mb-2">Configura</h3>
                 <p className="text-gray-600">
                   Usa nuestra{" "}
-                  <a href="https://play.google.com/store/apps/details?id=TU.PAQUETE.ARIA" className="text-[#7B29DD]">
+                  <a href="https://fromsmash.com/Aria-Asistente-inteligente" className="text-[#7B29DD]">
                     App
                   </a>{" "}
                   para registrar contactos de emergencia, recordatorios y dispositivos del hogar.
